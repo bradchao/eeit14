@@ -9,7 +9,7 @@ public class Brad03 {
 		System.out.println(a);
 		//a = a + 1;	// byte, short, int, char => int
 		//System.out.println(a);
-		a -= 1;
+		a -= 2;
 		System.out.println(a);
 	}
 
