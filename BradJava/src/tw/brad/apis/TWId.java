@@ -16,7 +16,16 @@ public class TWId {
 		this(new Random().nextBoolean(),area);
 	}
 	public TWId(boolean isMale, char area) {
-		
+		StringBuffer sb = new StringBuffer();
+		sb.append(area);
+		sb.append(isMale?'1':'2');
+		for (int i=0; i<7; i++) sb.append(new Random().nextInt(10));
+		for (int i=0; i<10; i++) {
+			if (isRight(sb.toString() + i)) {
+				id = sb.append(i).toString();
+				break;
+			}
+		}
 	}
 	
 	
@@ -24,7 +33,10 @@ public class TWId {
 //		this.id = id;
 //	}
 	
-	
+	@Override
+	public String toString() {
+		return id;
+	}
 	
 	
 	public static boolean isRight(String id) {
