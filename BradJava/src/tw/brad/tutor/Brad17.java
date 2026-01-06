@@ -5,8 +5,8 @@ import tw.brad.apis.Bike;
 public class Brad17 {
 
 	public static void main(String[] args) {
-		Bike bike1 = new Bike();
-		Bike bike2 = new Bike();
+		Bike bike1 = new Bike(1);
+		Bike bike2 = new Bike(2);
 		System.out.println(bike1);
 		System.out.println(bike2);
 		System.out.println(bike1.getSpeed());
