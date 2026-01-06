@@ -18,7 +18,7 @@ public class TWId {
 //		}
 
 		if (id.matches("[A-Z][12][0-9]{8}")) {
-			isRight = true;
+			
 		}
 		
 		
