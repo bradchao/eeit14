@@ -6,7 +6,7 @@ public class Brad23 {
 
 	public static void main(String[] args) {
 		System.out.println(Math.random());
-		System.out.println(TWId.isRight("A32345678A"));
+		System.out.println(TWId.isRight("A123456789"));
 	}
 
 }
