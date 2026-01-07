@@ -1,6 +1,8 @@
 package tw.brad.tutor;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -25,6 +27,9 @@ public class Guess extends JFrame implements ActionListener{
 		guess = new JButton("猜");
 		input = new JTextField();
 		log = new JTextArea();
+		
+		input.setFont(new Font(null, Font.BOLD | Font.ITALIC , 24));
+		input.setForeground(Color.BLUE);
 		
 		setLayout(new BorderLayout());
 		add(log, BorderLayout.CENTER);
@@ -82,8 +87,10 @@ public class Guess extends JFrame implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		counter++;
 		String g = input.getText();
+		// 檢查機制
+		
+		counter++;
 		input.setText("");
 		
 		String result = checkAB(g);
