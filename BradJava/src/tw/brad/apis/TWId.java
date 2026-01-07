@@ -28,10 +28,26 @@ public class TWId {
 		}
 	}
 	
+	private TWId(String id) {
+		this.id = id;
+	}
 	
-//	public TWId(String id) {
-//		this.id = id;
-//	}
+	public static TWId createTWId(String id) {
+		if (isRight(id)) {
+			return new TWId(id);
+		}else {
+			return null;
+		}
+	}
+	
+	public boolean isMale() {
+		return true;
+	}
+	
+	public String getArea() {
+		return "台南市";
+	}
+	
 	
 	@Override
 	public String toString() {
