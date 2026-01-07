@@ -20,7 +20,7 @@ public class Brad25 {
 		go(obj3);
 		System.out.println("----");
 		if (obj3 instanceof Brad253) {
-			System.out.println("OK");
+			System.out.println("OK1");
 		}else {
 			System.out.println("XX");
 		}
