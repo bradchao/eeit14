@@ -12,13 +12,13 @@ import java.util.List;
 import javax.swing.JPanel;
 
 public class MyDrawer extends JPanel {
-	private List<Point> line;
+	private List<Line> lines;
 	
 	
 	public MyDrawer() {
 		setBackground(Color.YELLOW);
 		
-		line = new ArrayList<Point>();
+		lines = new ArrayList<>();
 		
 		MyListener listener = new MyListener();
 		addMouseListener(listener);
@@ -33,25 +33,28 @@ public class MyDrawer extends JPanel {
 		g2d.setStroke(new BasicStroke(4));
 		g2d.setColor(Color.BLUE);
 		
-		for (int i = 1; i< line.size(); i++) {
-			Point p1 = line.get(i-1);
-			Point p2 = line.get(i);
-			g2d.drawLine(p1.getX(), p1.getY(), p2.getX(), p2.getY());
+		for (Line line : lines) {
+			for (int i = 1; i< line.getSize(); i++) {
+				g2d.drawLine(
+						line.getPointX(i-1), line.getPointY(i-1), 
+						line.getPointX(i), line.getPointY(i));
+			}
 		}
+		
 	}
 	
 	private class MyListener extends MouseAdapter {
 		
 		@Override
 		public void mousePressed(MouseEvent e) {
-			Point p = new Point(e.getX(), e.getY());
-			line.add(p);
+			Line line = new Line();
+			line.addPoint(e.getX(), e.getY());
+			lines.add(line);
 		}
 		
 		@Override
 		public void mouseDragged(MouseEvent e) {
-			Point p = new Point(e.getX(), e.getY());
-			line.add(p);
+			lines.getLast().addPoint(e.getX(), e.getY());
 			repaint();
 		}
 	}
