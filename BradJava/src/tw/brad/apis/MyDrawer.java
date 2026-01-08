@@ -59,6 +59,11 @@ public class MyDrawer extends JPanel {
 		}
 	}
 	
+	public void clear() {
+		lines.clear();
+		repaint();
+	}
+	
 	
 }
 
