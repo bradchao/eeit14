@@ -10,10 +10,14 @@ public class Brad36 {
 			c = a / b;
 			System.out.println(c);
 			System.out.println(d[30]);
-		}catch(ArithmeticException e) {
-			System.out.println("Oooop!");
 		}catch(ArrayIndexOutOfBoundsException e) {
 			System.out.println("xxxxxx!");
+		}catch(ArithmeticException e) {
+			System.out.println("Oooop!");
+		}catch(RuntimeException e) {
+			System.out.println("XXX");
+		}catch(Exception e) {
+			
 		}
 		System.out.println("Game Over");
 	}
