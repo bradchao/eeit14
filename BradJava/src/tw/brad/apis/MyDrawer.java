@@ -12,7 +12,7 @@ import java.util.List;
 import javax.swing.JPanel;
 
 public class MyDrawer extends JPanel {
-	private List<Line> lines, recycle;
+	private List<LineV2> lines, recycle;
 	private Color defaultColor;
 	private float defaultWidth;
 	
@@ -37,7 +37,7 @@ public class MyDrawer extends JPanel {
 		Graphics2D g2d = (Graphics2D)g;
 		
 		
-		for (Line line : lines) {
+		for (LineV2 line : lines) {
 			g2d.setColor(line.getColor());
 			g2d.setStroke(new BasicStroke(line.getWidth()));
 			for (int i = 1; i< line.getSize(); i++) {
@@ -53,7 +53,7 @@ public class MyDrawer extends JPanel {
 		
 		@Override
 		public void mousePressed(MouseEvent e) {
-			Line line = new Line(defaultColor, defaultWidth);
+			LineV2 line = new LineV2(defaultColor, defaultWidth);
 			line.addPoint(e.getX(), e.getY());
 			lines.add(line);
 			
