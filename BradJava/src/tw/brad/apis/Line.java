@@ -9,9 +9,10 @@ public class Line {
 	private Color color;
 	private float width;
 	
-	public Line(Color color) {
+	public Line(Color color, float width) {
 		points = new ArrayList<Point>();
 		this.color = color;
+		this.width = width;
 	}
 	
 	public void addPoint(int x, int y) {
@@ -30,4 +31,5 @@ public class Line {
 	public Color getColor() {
 		return color;
 	}
+	public float getWidth() {return width;}
 }

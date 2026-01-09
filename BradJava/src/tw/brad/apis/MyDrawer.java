@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 public class MyDrawer extends JPanel {
 	private List<Line> lines, recycle;
 	private Color defaultColor;
+	private float defaultWidth;
 	
 	
 	public MyDrawer() {
@@ -22,6 +23,7 @@ public class MyDrawer extends JPanel {
 		lines = new ArrayList<>();
 		recycle = new ArrayList<>();
 		defaultColor = Color.BLUE;
+		defaultWidth = 4f;
 		
 		MyListener listener = new MyListener();
 		addMouseListener(listener);
@@ -33,10 +35,11 @@ public class MyDrawer extends JPanel {
 		super.paintComponent(g);
 		
 		Graphics2D g2d = (Graphics2D)g;
-		g2d.setStroke(new BasicStroke(4));
+		
 		
 		for (Line line : lines) {
 			g2d.setColor(line.getColor());
+			g2d.setStroke(new BasicStroke(line.getWidth()));
 			for (int i = 1; i< line.getSize(); i++) {
 				g2d.drawLine(
 						line.getPointX(i-1), line.getPointY(i-1), 
@@ -50,7 +53,7 @@ public class MyDrawer extends JPanel {
 		
 		@Override
 		public void mousePressed(MouseEvent e) {
-			Line line = new Line(defaultColor);
+			Line line = new Line(defaultColor, defaultWidth);
 			line.addPoint(e.getX(), e.getY());
 			lines.add(line);
 			
@@ -87,6 +90,10 @@ public class MyDrawer extends JPanel {
 		defaultColor = newColor;
 	}
 	public Color getColor() {return defaultColor;}
+	
+	public void changeWidth(float width) {
+		defaultWidth = width;
+	}
 }
 
 
