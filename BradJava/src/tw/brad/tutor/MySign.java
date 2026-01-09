@@ -13,7 +13,7 @@ import tw.brad.apis.MyDrawer;
 
 public class MySign extends JFrame{
 	private MyDrawer myDrawer;
-	private JButton clear;
+	private JButton clear, undo, redo;
 	
 	public MySign() {
 		super("MySign");
@@ -24,7 +24,9 @@ public class MySign extends JFrame{
 		
 		JPanel top = new JPanel(new FlowLayout());
 		clear = new JButton("Clear");
-		top.add(clear);
+		undo = new JButton("Undo");
+		redo = new JButton("Redo");
+		top.add(clear); top.add(undo);top.add(redo);
 		add(top, BorderLayout.NORTH);
 		
 		
@@ -42,7 +44,18 @@ public class MySign extends JFrame{
 				myDrawer.clear();
 			}
 		});
-		
+		undo.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				myDrawer.undo();
+			}
+		});
+		redo.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				myDrawer.redo();
+			}
+		});
 		
 		
 		

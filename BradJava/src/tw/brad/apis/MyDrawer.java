@@ -12,13 +12,14 @@ import java.util.List;
 import javax.swing.JPanel;
 
 public class MyDrawer extends JPanel {
-	private List<Line> lines;
+	private List<Line> lines, recycle;
 	
 	
 	public MyDrawer() {
 		setBackground(Color.YELLOW);
 		
 		lines = new ArrayList<>();
+		recycle = new ArrayList<>();
 		
 		MyListener listener = new MyListener();
 		addMouseListener(listener);
@@ -50,6 +51,8 @@ public class MyDrawer extends JPanel {
 			Line line = new Line();
 			line.addPoint(e.getX(), e.getY());
 			lines.add(line);
+			
+			recycle.clear();
 		}
 		
 		@Override
@@ -64,6 +67,18 @@ public class MyDrawer extends JPanel {
 		repaint();
 	}
 	
+	public void undo() {
+		if (lines.size() > 0) {
+			recycle.add(lines.removeLast());
+			repaint();
+		}
+	}
+	public void redo() {
+		if (recycle.size() > 0) {
+			lines.add(recycle.removeLast());
+			repaint();
+		}
+	}
 	
 }
 
