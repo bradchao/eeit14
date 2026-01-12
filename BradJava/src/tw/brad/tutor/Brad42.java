@@ -7,9 +7,9 @@ import java.io.IOException;
 public class Brad42 {
 
 	public static void main(String[] args) {
-		String mesg = "Hello, World";
+		String mesg = "Hello, Brad\n";
 		try {
-			FileOutputStream fout = new FileOutputStream("dir1/file3.txt");
+			FileOutputStream fout = new FileOutputStream("dir1/file3.txt", true);
 			fout.write(mesg.getBytes());
 			fout.flush();
 			fout.close();
