@@ -6,14 +6,17 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 public class MyDrawer extends JPanel {
@@ -116,6 +119,18 @@ public class MyDrawer extends JPanel {
 			}else {
 				throw new Exception("你來亂的!");
 			}
+		}
+	}
+	
+	public void saveJPEG() {
+		BufferedImage bimg = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
+		Graphics2D g2d = bimg.createGraphics();
+		paint(g2d);
+		g2d.dispose();
+		try {
+			ImageIO.write(bimg, "JPEG", new File("dir1/brad.jpg"));
+		} catch (IOException e) {
+			System.out.println(e);
 		}
 	}
 	

@@ -21,7 +21,7 @@ import tw.brad.apis.MyDrawer;
 
 public class MySign extends JFrame{
 	private MyDrawer myDrawer;
-	private JButton clear, undo, redo, color, saveObj, loadObj;
+	private JButton clear, undo, redo, color, saveObj, loadObj, saveJpeg;
 	private JSlider width;
 	
 	public MySign() {
@@ -38,10 +38,12 @@ public class MySign extends JFrame{
 		color = new JButton("Color");
 		saveObj = new JButton("Save Lines");
 		loadObj = new JButton("Load Lines");
+		saveJpeg = new JButton("Save Jpeg");
 		width = new JSlider(10, 200, 40);
 		top.add(clear); top.add(undo);top.add(redo);
 		top.add(color);
 		top.add(saveObj); top.add(loadObj);
+		top.add(saveJpeg); 
 		top.add(width);
 		add(top, BorderLayout.NORTH);
 		
@@ -95,6 +97,12 @@ public class MySign extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				loadLines();
+			}
+		});
+		saveJpeg.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				myDrawer.saveJPEG();
 			}
 		});
 		
