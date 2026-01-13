@@ -17,8 +17,15 @@ public class Brad23 {
 		System.out.println(id3);
 		System.out.println(id4);
 		System.out.println("---");
-		TWId id5 = TWId.createTWId("A123456787");
-		System.out.println(id5);
+		TWId id5;
+		try {
+			id5 = TWId.createTWId("A123456787");
+			System.out.println(id5);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 }
