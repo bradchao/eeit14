@@ -3,6 +3,7 @@ package tw.brad.tutor;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -58,17 +59,27 @@ public class Racing extends JFrame{
 		public void run() {
 			for (int i=0; i<100; i++) {
 				if (i == 99) {
-					sb.append("> " + ++rank);
+					//sb.append("> " + ++rank);
+					sb.append("> WINNER");
+					stopGame();
 				}else {
 					sb.append(">");
 				}
 				lanes[lane].setText(sb.toString());
 				
 				try {
-					Thread.sleep(10 + (int)(Math.random()*100));
+					//Thread.sleep(10 + (int)(Math.random()*100));
+					Thread.sleep(10 + new Random().nextInt(100));
 				} catch (InterruptedException e) {
+					break;
 				}
 			}
+		}
+	}
+	
+	private void stopGame() {
+		for (Car car : cars) {
+			car.interrupt();
 		}
 	}
 	

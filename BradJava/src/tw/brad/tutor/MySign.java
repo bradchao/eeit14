@@ -17,12 +17,14 @@ import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import tw.brad.apis.MyClock;
 import tw.brad.apis.MyDrawer;
 
 public class MySign extends JFrame{
 	private MyDrawer myDrawer;
 	private JButton clear, undo, redo, color, saveObj, loadObj, saveJpeg;
 	private JSlider width;
+	private MyClock myClock;
 	
 	public MySign() {
 		super("MySign");
@@ -40,14 +42,16 @@ public class MySign extends JFrame{
 		loadObj = new JButton("Load Lines");
 		saveJpeg = new JButton("Save Jpeg");
 		width = new JSlider(10, 200, 40);
+		myClock = new MyClock();
 		top.add(clear); top.add(undo);top.add(redo);
 		top.add(color);
 		top.add(saveObj); top.add(loadObj);
 		top.add(saveJpeg); 
 		top.add(width);
+		top.add(myClock);
 		add(top, BorderLayout.NORTH);
 		
-		setSize(800, 480);
+		setSize(1024, 480);
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
