@@ -5,14 +5,15 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 
 import tw.brad.apis.GamePanel;
+import tw.brad.apis.GamePanelV2;
 
 public class BallGame extends JFrame{
-	private GamePanel gamePanel;
+	private GamePanelV2 gamePanel;
 	
 	public BallGame() {
 	
 		setLayout(new BorderLayout());
-		gamePanel = new GamePanel();
+		gamePanel = new GamePanelV2();
 		add(gamePanel, BorderLayout.CENTER);
 		
 		setSize(640, 480);
