@@ -5,6 +5,10 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.util.Properties;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -20,13 +24,19 @@ public class Brad06 {
 			VALUES
 				(?,?,?,?,?,?,?)
 			""";	
-	
+	private static final String SQL_DEL_ALL = """
+			DELETE FROM gift
+			""";
+	private static final String SQL_ONE = """
+			ALTER TABLE gift AUTO_INCREMENT = 1
+			""";
+			
 	public static void main(String[] args) {
 		String json;
 		try {
 			json = fetchFromURL(URL_OPENDATA);
-			//System.out.println(json);
 			parseJSON(json);
+			System.out.println("Finish");
 		} catch (Exception e) {
 			System.out.println(e);
 		}
@@ -55,15 +65,50 @@ public class Brad06 {
 //		}
 	}
 	
-	static void parseJSON(String json) {
+	static void parseJSON(String json) throws Exception{
 		JSONArray root = new JSONArray(json);
 		System.out.println(root.length());
 		
-		for (int i=0; i<root.length(); i++) {
-			JSONObject row = root.getJSONObject(i);
-			System.out.println(row.getString("Name"));
-		}
+		Properties prop = new Properties();
+		prop.put("user", USER);
+		prop.put("password", PASSWD);		
+		try (Connection conn = DriverManager.getConnection(URL, prop);
+				PreparedStatement pstmt = conn.prepareStatement(SQL_INSERT)){
 		
+			pstmt.execute(SQL_DEL_ALL);
+			pstmt.execute(SQL_ONE);
+			
+			for (int i=0; i<root.length(); i++) {
+				JSONObject row = root.getJSONObject(i);
+				
+				String name = row.getString("Name");
+				String feature = row.getString("Feature");
+				String addr = row.getString("County") + 
+							row.getString("Township") + 
+							row.getString("SalePlace");
+				String tel = row.getString("ContactTel");
+				String picurl = row.getString("Column1");
+				String lat = row.getString("Latitude");
+				String lng = row.getString("Longitude");
+				
+				pstmt.setString(1, name);
+				pstmt.setString(2, feature);
+				pstmt.setString(3, addr);
+				pstmt.setString(4, tel);
+				pstmt.setString(5, picurl);
+				
+				try {
+					pstmt.setDouble(6, Double.parseDouble(lat));
+					pstmt.setDouble(7, Double.parseDouble(lng));
+				}catch(Exception e) {
+					pstmt.setDouble(6, 0.0);
+					pstmt.setDouble(7, 0.0);
+				}
+				
+				pstmt.executeUpdate();
+			}
+		
+		}
 		
 		
 	}
