@@ -56,6 +56,7 @@ public class Brad10 {
 				System.out.println("Email XXX");
 			}
 		}catch(Exception e) {
+			System.out.println(e);
 			System.out.println("ERROR: 500");
 		}
 	}
