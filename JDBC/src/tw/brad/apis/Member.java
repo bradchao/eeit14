@@ -3,7 +3,7 @@ package tw.brad.apis;
 public class Member {
 	private long id;
 	private String email, passwd, name;
-	public Member(int id, String email, String passwd, String name) {
+	public Member(long id, String email, String passwd, String name) {
 		this.id = id;
 		this.email = email;
 		this.passwd = passwd;
