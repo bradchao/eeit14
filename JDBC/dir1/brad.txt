@@ -33,6 +33,19 @@ HAVING
 ORDER BY
 LIMIT
 -----------------------------------------------
+SELECT `ProductID`, SUM(`Quantity`) sum
+FROM `orderdetails` 
+GROUP BY `ProductID`
+HAVING sum < 200
+-------------------------------------------------
+SELECT `CompanyName`,`ContactName`,`Phone`
+FROM `customers` 
+WHERE `CustomerID` = (
+    SELECT CustomerID
+    FROM orders
+    WHERE OrderID = 10254
+)
+----------------------------------------
 
 
 
