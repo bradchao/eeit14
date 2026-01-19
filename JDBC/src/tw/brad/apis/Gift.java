@@ -54,4 +54,9 @@ public class Gift {
 		this.lng = lng;
 	}
 	
+	@Override
+	public String toString() {
+		return String.format("%s:%s:%s", name, add, tel);
+	}
+	
 }
