@@ -56,7 +56,7 @@ public class MemberDAOImpl implements MemberDAO{
 	@Override
 	public boolean updateMember(Member member) throws Exception {
 		try(Connection conn = DriverManager.getConnection(URL, USER, PASSWD);
-				PreparedStatement pstmt = conn.prepareStatement(SQL_ADD)){
+				PreparedStatement pstmt = conn.prepareStatement(SQL_UPDATE)){
 			pstmt.setString(1, member.getEmail());
 			pstmt.setString(2, BCrypt.hashpw(member.getPasswd(),BCrypt.gensalt()));
 			pstmt.setString(3, member.getName());
@@ -68,7 +68,7 @@ public class MemberDAOImpl implements MemberDAO{
 	@Override
 	public boolean delMember(long id) throws Exception {
 		try(Connection conn = DriverManager.getConnection(URL, USER, PASSWD);
-				PreparedStatement pstmt = conn.prepareStatement(SQL_ADD)){
+				PreparedStatement pstmt = conn.prepareStatement(SQL_DEL)){
 			pstmt.setLong(1, id);
 			return pstmt.executeUpdate() > 0;
 		}
@@ -77,13 +77,13 @@ public class MemberDAOImpl implements MemberDAO{
 	@Override
 	public Member findById(long id) throws Exception {
 		try(Connection conn = DriverManager.getConnection(URL, USER, PASSWD);
-				PreparedStatement pstmt = conn.prepareStatement(SQL_ADD)){
+				PreparedStatement pstmt = conn.prepareStatement(SQL_FIND_ID)){
 			pstmt.setLong(1, id);
 			ResultSet rs = pstmt.executeQuery();
 			if (rs.next()) {
 				return new Member(rs.getLong("id"), 
 									rs.getString("email"),
-									rs.getString("passwd"),
+									null,
 									rs.getString("name")
 									);
 			}
@@ -96,14 +96,14 @@ public class MemberDAOImpl implements MemberDAO{
 	@Override
 	public List<Member> findAll() throws Exception {
 		try(Connection conn = DriverManager.getConnection(URL, USER, PASSWD);
-				PreparedStatement pstmt = conn.prepareStatement(SQL_ADD)){
+				PreparedStatement pstmt = conn.prepareStatement(SQL_FIND_ALL)){
 			
 			List<Member> list = new ArrayList<>();
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				list.add( new Member(rs.getLong("id"), 
 									rs.getString("email"),
-									rs.getString("passwd"),
+									null,
 									rs.getString("name")
 									));			
 			}
