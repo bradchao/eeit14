@@ -5,11 +5,13 @@ import java.sql.DriverManager;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
+import tw.brad.apis.Task;
+
 public class Brad26 {
 	private static final String URL = "jdbc:mysql://localhost:3306/iii";
 	private static final String USER = "root";
 	private static final String PASSWD = "root";
-	private static final BlockingQueue QUEUE = new ArrayBlockingQueue<>(200);
+	private static final BlockingQueue<Task> QUEUE = new ArrayBlockingQueue<>(200);
 	
 	public static void main(String[] args) throws Exception {
 		try (Connection conn = DriverManager.getConnection(URL, USER, PASSWD)){
