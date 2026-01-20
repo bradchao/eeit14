@@ -5,13 +5,14 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
 
 public class GiftDAO {
 	private static final String URL = "jdbc:mysql://localhost:3306/iii";
 	private static final String USER = "root";
 	private static final String PASSWD = "root";
 	private static final String SQL_FIND_ALL = """
-			SELECT id, name, feature, addr, tel
+			SELECT id 編號, name 名稱, feature 特色, addr 地址, tel 電話
 			FROM gift
 			ORDER BY id
 			""";	
@@ -57,9 +58,26 @@ public class GiftDAO {
 		}
 	}
 	
+	public String[] getFields() {return fieldNames;}
 	
+	public void updateData(String newData, int row, int col) {
+		try {
+			rs.absolute(row+1);
+			rs.updateString(col+1, newData);
+			rs.updateRow();
+		} catch (SQLException e) {
+			System.out.println(e);
+		}
+	}
 	
-	
+	public void delRow(int row) {
+		try {
+			rs.absolute(row+1);
+			rs.deleteRow();
+		} catch (SQLException e) {
+			System.out.println(e);
+		}
+	}
 	
 	
 	

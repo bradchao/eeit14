@@ -17,8 +17,16 @@ public class GiftTable extends JTable{
 		
 		giftModel = new GiftModel();
 		setModel(giftModel);
+		giftModel.setColumnIdentifiers(dao.getFields());
 	}
 
+	public void delData() {
+		if (getSelectedRow() != -1) {
+			dao.delRow(getSelectedRow());
+			repaint();
+		}
+	}
+	
 	
 	private class GiftModel extends DefaultTableModel {
 
@@ -36,6 +44,18 @@ public class GiftTable extends JTable{
 		public Object getValueAt(int row, int column) {
 			return dao.getData(row, column);
 		}
+
+		@Override
+		public void setValueAt(Object aValue, int row, int column) {
+			dao.updateData((String)aValue, row, column);
+		}
+
+		@Override
+		public boolean isCellEditable(int row, int column) {
+			return column != 0;
+		}
+		
+		
 		
 	}
 }
