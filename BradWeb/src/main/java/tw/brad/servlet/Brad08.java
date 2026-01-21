@@ -21,15 +21,31 @@ public class Brad08 extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		
-		String x, y, result;
-		x = y = result = "";
+		String x, y, result, op;
+		x = y = result = op = "";
 		try {
 			String tempx = request.getParameter("x");
 			String tempy = request.getParameter("y");
-			int r = Integer.parseInt(tempx) + Integer.parseInt(tempy);
-			result += r;
-			x = tempx; y = tempy;
-			System.out.println(result);
+			String tempop = request.getParameter("op");
+			int r = 0, r1 = 0;
+			switch (tempop) {
+				case "1":
+					r = Integer.parseInt(tempx) + Integer.parseInt(tempy);
+					break;
+				case "2":
+					r = Integer.parseInt(tempx) - Integer.parseInt(tempy);
+					break;
+				case "3":
+					r = Integer.parseInt(tempx) * Integer.parseInt(tempy);
+					break;
+				case "4":
+					r = Integer.parseInt(tempx) / Integer.parseInt(tempy);
+					r1 = Integer.parseInt(tempx) % Integer.parseInt(tempy);
+					break;
+			}
+			
+			result += r + (r1 > 0?(" ...... " + r1):"");
+			x = tempx; y = tempy; op = tempop;
 		}catch(Exception e) {
 			System.out.println(e);
 		}
@@ -43,7 +59,12 @@ public class Brad08 extends HttpServlet {
 		byte[] data = bin.readAllBytes();
 		String html = new String(data);
 		
-		out.print(String.format(html, x, y,result));
+		out.print(String.format(html, x,
+				op.equals("1")?"selected":"",
+				op.equals("2")?"selected":"",
+				op.equals("3")?"selected":"",
+				op.equals("4")?"selected":"",
+				y,result));
 		
 		response.flushBuffer();
 		
