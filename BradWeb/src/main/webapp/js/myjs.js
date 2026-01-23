@@ -30,7 +30,11 @@ window.onload = function(){
 			start.style.display = "none";
 			chatDiv.style.display = "block";
 		}
-		webSocket.onmessage = function(){}
+		webSocket.onmessage = function(event){
+			//console.log(event);
+			let mesgObj = JSON.parse(event.data);
+			log.innerHTML += mesgObj.message + "<br />";
+		}
 		webSocket.onclose = function(){
 			console.log("onColor");
 		}
