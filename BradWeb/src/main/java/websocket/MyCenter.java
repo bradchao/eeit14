@@ -35,8 +35,16 @@ public class MyCenter {
 		if (!isExistTeacher && mesg.contains("isTeacher")) {
 			isExistTeacher = true;
 			teacherSession = session;
+			System.out.println("Teacher Exist");
 		}else if (session == teacherSession) {
-			
+			System.out.println("Teacher Drawing");
+			for (Session userSession : sessions) {
+				try {
+					userSession.getBasicRemote().sendText(mesg);
+					System.out.println("Send Student");
+				} catch (IOException e) {
+				}
+			}			
 		}
 	}
 	
