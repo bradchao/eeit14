@@ -8,8 +8,6 @@ window.onload = function(){
 		isConnect = true;
 		webSocket.send(JSON.stringify({isTeacher:true}));
 	}
-	webSocket.onmessage = function(event){
-	}
 	webSocket.onclose = function(){
 		isConnect = false;
 	}
