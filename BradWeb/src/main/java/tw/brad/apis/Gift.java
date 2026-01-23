@@ -58,5 +58,4 @@ public class Gift {
 	public String toString() {
 		return String.format("%s:%s:%s", name, addr, tel);
 	}
-	
 }
