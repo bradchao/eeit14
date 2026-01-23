@@ -15,11 +15,19 @@ import tw.brad.apis.Gift;
 
 @WebServlet("/GiftViewer")
 public class GiftViewer extends HttpServlet {
-	private static final String TEMPLATE_PATH = "/WEB-INF/views/view1.html";
+	private static final String TEMPLATE_PATH = "/WEB-INF/views/view2.html";
+	//private static final String TEMPLATE_PATH = "/WEB-INF/dir1/ok.html";
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			List<Gift> gifts = (List<Gift>)request.getAttribute("gifts");
+			if (gifts != null) {
+				System.out.println(gifts.size());
+			}else {
+				System.out.println("gift null(2)");
+			}			
+			
+			
 			Integer prev = (Integer)request.getAttribute("prev");
 			Integer page = (Integer)request.getAttribute("page");
 			Integer next = (Integer)request.getAttribute("next");
@@ -60,7 +68,7 @@ public class GiftViewer extends HttpServlet {
 	
 	private String readTableHTML(List<Gift> gifts) {
 		StringBuilder sb = new StringBuilder();
-		sb.append("<table border='1'>");
+		sb.append("<table>");
 			sb.append("<caption>").append("伴手禮列表").append("</caption>");
 			sb.append("<thead><tr>");
 				sb.append("<th>編號</th>");
