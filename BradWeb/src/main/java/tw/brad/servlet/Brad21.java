@@ -37,6 +37,11 @@ public class Brad21 extends HttpServlet {
 					session.setAttribute("ary", ary);
 					//-----
 					
+					member.setName("New Brad");
+					lottery = 100;
+					ary[2] = 33;
+					
+					
 					response.sendRedirect("Brad22");
 				}else {
 					response.sendRedirect("brad21.html");
