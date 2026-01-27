@@ -3,6 +3,7 @@
 <%
 	//String method = request.getMethod();
 	//request.getLocale().getDisplayCountry()
+	
 %>    
 <!DOCTYPE html>
 <html>
