@@ -1,8 +1,10 @@
+<%@page import="tw.brad.apis.Bike"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 	//String method = request.getMethod();
 	//request.getLocale().getDisplayCountry()
+	
 	
 %>    
 <!DOCTYPE html>
