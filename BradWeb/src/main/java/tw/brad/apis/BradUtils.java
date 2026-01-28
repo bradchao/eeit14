@@ -56,4 +56,34 @@ public class BradUtils {
 		return foods;
 	}
 	
+	public static String order2JSON(SortedMap[] rows) {
+		JSONObject root = new JSONObject();
+		if (rows.length > 0) {
+			root.put("orderDate", rows[0].getOrDefault("OrderDate", ""));
+			root.put("employee", rows[0].getOrDefault("LastName", ""));
+			root.put("customer", String.format("%s(%s)", 
+					rows[0].getOrDefault("CompanyName", ""),
+					rows[0].getOrDefault("ContactName", "")
+					));
+			
+			JSONArray details = new JSONArray();
+			for (SortedMap<String,String> row: rows) {
+				JSONObject obj = new JSONObject();
+				details.put(obj);
+				
+				obj.put("pid", row.getOrDefault("ProductID", ""));
+				obj.put("pname", row.getOrDefault("ProductName", ""));
+				obj.put("price", row.getOrDefault("UnitPrice", ""));
+				obj.put("qty", row.getOrDefault("Quantity", ""));
+				
+			}
+			
+			root.put("details", details);
+		}
+		
+		return root.toString();
+	}
+	
+	
+	
 }
