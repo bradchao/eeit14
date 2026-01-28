@@ -78,7 +78,6 @@ public class BradUtils {
 				
 				
 				
-				
 			}
 			
 			root.put("details", details);
