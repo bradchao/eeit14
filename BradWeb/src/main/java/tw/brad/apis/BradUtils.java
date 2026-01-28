@@ -76,6 +76,9 @@ public class BradUtils {
 				obj.put("price", row.getOrDefault("UnitPrice", ""));
 				obj.put("qty", row.getOrDefault("Quantity", ""));
 				
+				
+				
+				
 			}
 			
 			root.put("details", details);
