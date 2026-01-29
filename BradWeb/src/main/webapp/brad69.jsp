@@ -15,5 +15,15 @@
 		<brad:test3 />
 		<brad:test3 />
 		<brad:test3 />
+		<brad:hello/><br />
+		Product: <brad:product pname="iPhone" price="32000.5"></brad:product>
+		<hr />
+		<brad:box>Hello, Brad1</brad:box>
+		<brad:box title="Welcome">
+			Hello, Brad2
+		</brad:box>
+		
+		
+		
 	</body>
 </html>
